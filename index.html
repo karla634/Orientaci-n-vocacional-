@@ -1,514 +1,331 @@
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f8fc">
-  <meta name="description" content="Mi Rumbo, orientación vocacional para estudiantes.">
-  <title>Mi Rumbo | Orientación vocacional</title>
+<!-- CUESTIONARIO VOCACIONAL: MI RUMBO -->
+<section id="cuestionario-vocacional" class="seccion-vocacional">
+  <div class="contenedor-vocacional">
+    <p class="etiqueta-vocacional">CONÓCETE MEJOR</p>
+    <h2>Descubre tus intereses</h2>
+    <p>
+      Responde estas preguntas para conocer algunas áreas profesionales
+      que podrías explorar según tus intereses.
+    </p>
 
-  <style>
-    :root {
-      --fondo: #f7f8fc;
-      --blanco: #ffffff;
-      --azul: #5269a8;
-      --oscuro: #293b68;
-      --claro: #e9eefb;
-      --verde: #e9f3ed;
-      --texto: #283248;
-      --gris: #788196;
-      --borde: #e8ebf2;
+    <form id="formulario-vocacional">
+      <div id="preguntas-vocacionales"></div>
+
+      <button type="submit" class="boton-vocacional">
+        Descubrir mis resultados
+      </button>
+      <button type="reset" id="reiniciar-vocacional"
+        class="boton-secundario-vocacional">
+        Volver a responder
+      </button>
+    </form>
+
+    <div id="resultado-vocacional" class="resultado-vocacional"
+      aria-live="polite" hidden></div>
+
+    <p class="aviso-vocacional">
+      <strong>Importante:</strong> este cuestionario es una herramienta
+      orientativa de exploración de intereses. No es una prueba
+      psicométrica validada ni sustituye una evaluación de orientación
+      vocacional realizada por un profesional. Sus resultados no
+      determinan qué carrera debes estudiar.
+    </p>
+  </div>
+</section>
+
+<style>
+  .seccion-vocacional {
+    padding: 36px 16px;
+    color: #18324a;
+    background: #f5f8fb;
+    font-family: Arial, sans-serif;
+  }
+
+  .contenedor-vocacional {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e0e8ef;
+    border-radius: 18px;
+  }
+
+  .etiqueta-vocacional {
+    color: #54758f;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
+  .contenedor-vocacional h2 {
+    color: #153451;
+    margin-bottom: 10px;
+  }
+
+  .pregunta-vocacional {
+    padding: 18px 0;
+    border-bottom: 1px solid #e7edf2;
+  }
+
+  .pregunta-vocacional legend {
+    font-weight: bold;
+    margin-bottom: 12px;
+  }
+
+  .opcion-vocacional {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 12px 0;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .opcion-vocacional input {
+    margin-top: 5px;
+    accent-color: #234d70;
+  }
+
+  .boton-vocacional,
+  .boton-secundario-vocacional {
+    display: inline-block;
+    margin-top: 18px;
+    margin-right: 8px;
+    padding: 12px 18px;
+    border-radius: 9px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+
+  .boton-vocacional {
+    color: white;
+    background: #183b59;
+    border: 1px solid #183b59;
+  }
+
+  .boton-secundario-vocacional {
+    color: #183b59;
+    background: white;
+    border: 1px solid #b9c9d6;
+  }
+
+  .resultado-vocacional {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f0f5f8;
+    border-radius: 12px;
+    line-height: 1.7;
+  }
+
+  .resultado-vocacional h3 {
+    color: #183b59;
+  }
+
+  .aviso-vocacional {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e8ef;
+    color: #536574;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+</style>
+
+<script>
+(function () {
+  const preguntas = [
+    {
+      texto: "¿Qué actividad te gustaría realizar?",
+      opciones: [
+        ["salud", "Escuchar y ayudar a las personas."],
+        ["ciencia", "Investigar y resolver problemas."],
+        ["creatividad", "Diseñar, dibujar o crear contenido."],
+        ["social", "Organizar actividades para una comunidad."]
+      ]
+    },
+    {
+      texto: "¿Qué temas te llaman más la atención?",
+      opciones: [
+        ["salud", "La psicología, la salud y el cuerpo humano."],
+        ["ciencia", "La tecnología, las matemáticas y los experimentos."],
+        ["creatividad", "El arte, el diseño y la comunicación."],
+        ["social", "La educación, la historia y la sociedad."]
+      ]
+    },
+    {
+      texto: "¿Cómo preferirías trabajar?",
+      opciones: [
+        ["salud", "Orientando o cuidando a otras personas."],
+        ["ciencia", "Analizando información y buscando soluciones."],
+        ["creatividad", "Creando proyectos e ideas originales."],
+        ["social", "Coordinando equipos y proyectos comunitarios."]
+      ]
+    },
+    {
+      texto: "¿Qué problema te gustaría ayudar a resolver?",
+      opciones: [
+        ["salud", "Las dificultades emocionales o de salud."],
+        ["ciencia", "Los problemas científicos o tecnológicos."],
+        ["creatividad", "Los problemas de diseño y comunicación."],
+        ["social", "Las dificultades educativas y sociales."]
+      ]
+    },
+    {
+      texto: "¿Qué logro te haría sentir más satisfacción?",
+      opciones: [
+        ["salud", "Contribuir al bienestar de alguien."],
+        ["ciencia", "Descubrir algo o solucionar un reto complejo."],
+        ["creatividad", "Transformar una idea en algo original."],
+        ["social", "Conseguir un cambio positivo en la comunidad."]
+      ]
+    },
+    {
+      texto: "¿Qué tipo de proyecto elegirías?",
+      opciones: [
+        ["salud", "Uno relacionado con las personas y su bienestar."],
+        ["ciencia", "Uno que requiera cálculos, análisis o tecnología."],
+        ["creatividad", "Uno de diseño, arte o producción audiovisual."],
+        ["social", "Uno de educación, participación o desarrollo social."]
+      ]
+    }
+  ];
+
+  const carreras = {
+    salud: [
+      "Psicología", "Medicina", "Enfermería",
+      "Nutrición", "Fisioterapia"
+    ],
+    ciencia: [
+      "Ingeniería", "Ingeniería en Sistemas",
+      "Matemáticas", "Biología", "Química"
+    ],
+    creatividad: [
+      "Diseño Gráfico", "Comunicación",
+      "Publicidad", "Arquitectura",
+      "Producción Audiovisual"
+    ],
+    social: [
+      "Trabajo Social", "Educación",
+      "Sociología", "Derecho",
+      "Desarrollo Comunitario"
+    ]
+  };
+
+  const nombres = {
+    salud: "Salud y bienestar",
+    ciencia: "Ciencia y tecnología",
+    creatividad: "Creatividad y comunicación",
+    social: "Sociedad y educación"
+  };
+
+  const contenedor = document.getElementById("preguntas-vocacionales");
+  const formulario = document.getElementById("formulario-vocacional");
+  const resultado = document.getElementById("resultado-vocacional");
+
+  // Evita duplicar el cuestionario si el código se ejecuta otra vez.
+  if (!contenedor || !formulario || !resultado ||
+      contenedor.dataset.inicializado === "si") return;
+
+  contenedor.dataset.inicializado = "si";
+
+  preguntas.forEach((pregunta, indice) => {
+    const grupo = document.createElement("fieldset");
+    grupo.className = "pregunta-vocacional";
+
+    const leyenda = document.createElement("legend");
+    leyenda.textContent = (indice + 1) + ". " + pregunta.texto;
+    grupo.appendChild(leyenda);
+
+    pregunta.opciones.forEach((opcion, numero) => {
+      const etiqueta = document.createElement("label");
+      etiqueta.className = "opcion-vocacional";
+
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "pregunta-" + indice;
+      radio.value = opcion[0];
+      radio.required = numero === 0;
+
+      const texto = document.createElement("span");
+      texto.textContent = opcion[1];
+
+      etiqueta.appendChild(radio);
+      etiqueta.appendChild(texto);
+      grupo.appendChild(etiqueta);
+    });
+
+    contenedor.appendChild(grupo);
+  });
+
+  formulario.addEventListener("submit", function (evento) {
+    evento.preventDefault();
+
+    const datos = new FormData(formulario);
+    const puntajes = {
+      salud: 0,
+      ciencia: 0,
+      creatividad: 0,
+      social: 0
+    };
+
+    for (let i = 0; i < preguntas.length; i++) {
+      const respuesta = datos.get("pregunta-" + i);
+
+      if (!respuesta) {
+        alert("Responde todas las preguntas para conocer tu resultado.");
+        return;
+      }
+
+      puntajes[respuesta]++;
     }
 
-    * { box-sizing: border-box; }
+    const mayor = Math.max(...Object.values(puntajes));
+    const areas = Object.keys(puntajes).filter(
+      area => puntajes[area] === mayor
+    );
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 20px;
+    let html = "<h3>Tu resultado orientativo</h3>";
+
+    if (areas.length === 1) {
+      const area = areas[0];
+      html += "<p>Tu área con mayor puntuación es <strong>" +
+        nombres[area] + "</strong>.</p>";
+      html += "<p>Podrías comenzar explorando estas carreras:</p><ul>";
+
+      carreras[area].forEach(carrera => {
+        html += "<li>" + carrera + "</li>";
+      });
+
+      html += "</ul>";
+    } else {
+      html += "<p>Tienes puntuaciones similares en varias áreas. " +
+        "Eso puede darte más de una dirección para explorar.</p>";
+
+      areas.forEach(area => {
+        html += "<h4>" + nombres[area] + "</h4><ul>";
+
+        carreras[area].forEach(carrera => {
+          html += "<li>" + carrera + "</li>";
+        });
+
+        html += "</ul>";
+      });
     }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--fondo);
-      color: var(--texto);
-      line-height: 1.6;
-    }
-
-    a { text-decoration: none; }
-
-    .contenedor {
-      width: min(100% - 32px, 950px);
-      margin: auto;
-    }
-
-    header { padding: 20px 0; }
-
-    .barra {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .marca {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--oscuro);
-      font-size: 21px;
-      font-weight: bold;
-    }
-
-    .logo {
-      display: grid;
-      place-items: center;
-      width: 43px;
-      height: 43px;
-      background: var(--claro);
-      border-radius: 15px;
-      font-size: 24px;
-    }
-
-    .etiqueta {
-      padding: 7px 11px;
-      border-radius: 30px;
-      background: var(--claro);
-      color: var(--azul);
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    .hero { padding: 32px 0 38px; }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .sobrelinea {
-      color: var(--azul);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 15px 0;
-      color: var(--oscuro);
-      font-size: clamp(35px, 6vw, 52px);
-      line-height: 1.12;
-      letter-spacing: -1.5px;
-    }
-
-    h1 span { color: var(--azul); }
-
-    .descripcion {
-      max-width: 430px;
-      margin-bottom: 24px;
-      color: var(--gris);
-    }
-
-    .boton {
-      display: inline-block;
-      padding: 13px 20px;
-      border-radius: 13px;
-      background: var(--azul);
-      color: white;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .boton:hover { background: var(--oscuro); }
-
-    .nota {
-      color: var(--gris);
-      font-size: 12px;
-    }
-
-    .ilustracion {
-      position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 270px;
-      overflow: hidden;
-      border-radius: 30px;
-      background: linear-gradient(140deg, #e8edfb, #f0f3fa, #e5f0eb);
-    }
-
-    .brujula {
-      display: grid;
-      place-items: center;
-      width: 155px;
-      height: 155px;
-      border-radius: 50%;
-      background: #ffffffbd;
-      box-shadow: 0 15px 40px #293b6812;
-      font-size: 72px;
-    }
-
-    .flotante {
-      position: absolute;
-      padding: 9px 12px;
-      border-radius: 12px;
-      background: white;
-      color: var(--oscuro);
-      font-size: 11px;
-      font-weight: bold;
-    }
-
-    .uno { top: 25px; left: 12px; }
-    .dos { right: 12px; bottom: 25px; }
-
-    section.contenido { padding: 30px 0; }
-
-    h2 {
-      margin: 0 0 7px;
-      color: var(--oscuro);
-      font-size: 25px;
-      line-height: 1.3;
-    }
-
-    .subtitulo {
-      margin: 0 0 20px;
-      color: var(--gris);
-      font-size: 14px;
-    }
-
-    .tarjetas {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .tarjeta {
-      padding: 20px;
-      border: 1px solid var(--borde);
-      border-radius: 19px;
-      background: white;
-    }
-
-    .icono {
-      display: grid;
-      place-items: center;
-      width: 45px;
-      height: 45px;
-      margin-bottom: 12px;
-      border-radius: 14px;
-      background: var(--claro);
-      font-size: 23px;
-    }
-
-    .tarjeta:nth-child(2) .icono { background: var(--verde); }
-    .tarjeta:nth-child(3) .icono { background: #f8eee3; }
-
-    h3 {
-      margin: 0 0 7px;
-      color: var(--oscuro);
-      font-size: 16px;
-    }
-
-    .tarjeta p, .universidad p {
-      margin: 0;
-      color: var(--gris);
-      font-size: 13px;
-    }
-
-    .opciones {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .opcion {
-      min-height: 65px;
-      padding: 14px;
-      border: 1px solid var(--borde);
-      border-radius: 14px;
-      background: white;
-      color: var(--texto);
-      font-size: 14px;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .opcion:hover, .opcion:focus {
-      border-color: var(--azul);
-      background: var(--claro);
-    }
-
-    #resultado {
-      display: none;
-      margin-top: 16px;
-      padding: 18px;
-      border-radius: 15px;
-      background: var(--verde);
-      font-size: 14px;
-    }
-
-    #resultado.visible { display: block; }
-
-    .universidades {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .universidad {
-      padding: 21px;
-      border: 1px solid var(--borde);
-      border-radius: 18px;
-      background: white;
-    }
-
-    .universidad p { margin-bottom: 15px; }
-
-    .enlace {
-      color: var(--azul);
-      font-size: 13px;
-      font-weight: bold;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .frase {
-      margin: 35px auto;
-      padding: 25px;
-      border-radius: 20px;
-      background: var(--oscuro);
-      color: white;
-      text-align: center;
-    }
-
-    .frase p {
-      margin: 0;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    footer {
-      padding: 22px 12px;
-      border-top: 1px solid var(--borde);
-      color: var(--gris);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    @media (max-width: 650px) {
-      .hero { padding-top: 20px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 24px; }
-      h1 { font-size: 39px; }
-      .ilustracion { min-height: 225px; }
-      .brujula { width: 135px; height: 135px; font-size: 62px; }
-      .tarjetas, .universidades { grid-template-columns: 1fr; }
-      .tarjeta { display: flex; align-items: flex-start; gap: 13px; }
-      .icono { flex-shrink: 0; }
-      .opciones { grid-template-columns: 1fr; }
-      .etiqueta { font-size: 10px; }
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div class="contenedor barra">
-      <a class="marca" href="#" aria-label="Mi Rumbo, inicio">
-        <span class="logo">🧭</span>
-        <span>Mi Rumbo</span>
-      </a>
-      <span class="etiqueta">Tu futuro comienza hoy</span>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="contenedor hero-grid">
-        <div>
-          <span class="sobrelinea">Un espacio para descubrirte</span>
-          <h1>Tu futuro.<br>Tus decisiones.<br><span>Tu rumbo.</span></h1>
-          <p class="descripcion">
-            Elegir una carrera no siempre es fácil. Conoce tus intereses,
-            explora tus opciones y empieza a construir el futuro que deseas.
-          </p>
-          <a class="boton" href="#explora">Descubre Mi Rumbo →</a>
-          <p class="nota">Sin presiones. Tu camino empieza por conocerte.</p>
-        </div>
-
-        <div class="ilustracion" aria-label="Brújula decorativa">
-          <span class="flotante uno">✦ Nuevas posibilidades</span>
-          <div class="brujula">🧭</div>
-          <span class="flotante dos">Tu camino, tu historia ✨</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="contenido">
-      <div class="contenedor">
-        <h2>Empieza por ti</h2>
-        <p class="subtitulo">Tres pasos para explorar tus posibilidades.</p>
-
-        <div class="tarjetas">
-          <article class="tarjeta">
-            <div class="icono">♡</div>
-            <div>
-              <h3>Conoce tus intereses</h3>
-              <p>Descubre qué actividades y temas despiertan tu curiosidad.</p>
-            </div>
-          </article>
-
-          <article class="tarjeta">
-            <div class="icono">✧</div>
-            <div>
-              <h3>Explora carreras</h3>
-              <p>Investiga opciones académicas que conecten contigo.</p>
-            </div>
-          </article>
-
-          <article class="tarjeta">
-            <div class="icono">↗</div>
-            <div>
-              <h3>Planea tu siguiente paso</h3>
-              <p>Consulta universidades y organiza tus metas académicas.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="contenido" id="explora">
-      <div class="contenedor">
-        <h2>Explora tus intereses</h2>
-        <p class="subtitulo">
-          Elige la actividad que más te llama la atención.
-        </p>
-
-        <div class="opciones">
-          <button class="opcion" onclick="mostrar('salud')">
-            🩺 Ayudar y cuidar a las personas
-          </button>
-
-          <button class="opcion" onclick="mostrar('ciencia')">
-            🔬 Investigar y resolver problemas
-          </button>
-
-          <button class="opcion" onclick="mostrar('arte')">
-            🎨 Crear, diseñar y comunicar ideas
-          </button>
-
-          <button class="opcion" onclick="mostrar('social')">
-            🌎 Comprender la sociedad y el comportamiento
-          </button>
-        </div>
-
-        <div id="resultado" aria-live="polite" role="status"></div>
-
-        <p class="nota">
-          Esta actividad es exploratoria y educativa. No es una prueba
-          psicológica ni determina qué carrera debes estudiar.
-        </p>
-      </div>
-    </section>
-
-    <section class="contenido" id="universidades">
-      <div class="contenedor">
-        <h2>Universidades y carreras</h2>
-        <p class="subtitulo">
-          Consulta las fuentes oficiales para informarte sobre las opciones.
-        </p>
-
-        <div class="universidades">
-          <article class="universidad">
-            <h3>UNAN-Managua</h3>
-            <p>
-              Visita el sitio oficial para consultar información institucional
-              y localizar la oferta académica vigente.
-            </p>
-            <a class="enlace"
-               href="https://www.unan.edu.ni/"
-               target="_blank" rel="noopener noreferrer">
-              Visitar UNAN-Managua ↗
-            </a>
-          </article>
-
-          <article class="universidad">
-            <h3>Admisión universitaria</h3>
-            <p>
-              Consulta el portal de admisión para revisar la información
-              publicada sobre el proceso y las carreras.
-            </p>
-            <a class="enlace"
-               href="https://admision.setec.edu.ni/"
-               target="_blank" rel="noopener noreferrer">
-              Abrir portal de admisión ↗
-            </a>
-          </article>
-        </div>
-
-        <p class="nota">
-          Para conocer las carreras específicas del CUR Matagalpa,
-          verifica la sede y la convocatoria en las fuentes oficiales.
-        </p>
-      </div>
-    </section>
-
-    <div class="contenedor">
-      <div class="frase">
-        <p>No necesitas tener toda tu vida resuelta para dar el primer paso.</p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    Mi Rumbo · Proyecto educativo de orientación vocacional · 2026
-  </footer>
-
-  <script>
-    function mostrar(area) {
-      const mensajes = {
-        salud: {
-          titulo: "Podrías explorar áreas de salud y acompañamiento",
-          texto: "Investiga Psicología, Enfermería, Medicina, Nutrición o Trabajo Social. Compara sus planes de estudio, requisitos y actividades profesionales."
-        },
-        ciencia: {
-          titulo: "Podrías explorar ciencia, tecnología e investigación",
-          texto: "Investiga opciones relacionadas con Matemática, Ingeniería, Informática o ciencias naturales. Revisa qué asignaturas y habilidades requiere cada carrera."
-        },
-        arte: {
-          titulo: "Podrías explorar áreas creativas y de comunicación",
-          texto: "Conoce opciones como Diseño, Comunicación, Artes o Publicidad. Investiga los proyectos que se realizan y sus oportunidades profesionales."
-        },
-        social: {
-          titulo: "Podrías explorar sociedad y comportamiento",
-          texto: "Investiga Psicología, Trabajo Social, Sociología, Educación o Derecho. Compara sus planes de estudio y piensa qué temas te interesan."
-        }
-      };
-
-      const resultado = document.getElementById("resultado");
-      const seleccion = mensajes[area];
-
-      if (!seleccion) return;
-
-      resultado.replaceChildren();
-
-      const titulo = document.createElement("strong");
-      titulo.textContent = seleccion.titulo;
-
-      const texto = document.createElement("p");
-      texto.textContent = seleccion.texto;
-
-      const enlace = document.createElement("a");
-      enlace.className = "enlace";
-      enlace.href = "#universidades";
-      enlace.textContent = "Consultar universidades ↓";
-
-      resultado.append(titulo, texto, enlace);
-      resultado.classList.add("visible");
-    }
-  </script>
-</body>
-</html>
-<a href="#cuestionario-vocacional">Descubre tus intereses</a>
+    html += "<p>También puedes investigar los planes de estudio, " +
+      "las asignaturas, las oportunidades laborales y las universidades " +
+      "que ofrecen estas carreras.</p>";
+
+    resultado.innerHTML = html;
+    resultado.hidden = false;
+    resultado.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  formulario.addEventListener("reset", function () {
+    resultado.hidden = true;
+    resultado.innerHTML = "";
+  });
+})();
+</script>
+<!-- FIN DEL CUESTIONARIO VOCACIONAL -->
