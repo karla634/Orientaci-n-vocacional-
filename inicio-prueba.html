@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <meta name="description" content="Mi Rumbo: descubre tus intereses y explora opciones para tu futuro académico.">
+  <title>Mi Rumbo | Encuentra tu camino</title>
+
+  <style>
+    :root {
+      --fondo: #f7f8fc;
+      --blanco: #ffffff;
+      --azul: #5269a8;
+      --azul-oscuro: #293b68;
+      --azul-claro: #e9eefb;
+      --verde-claro: #e9f3ed;
+      --texto: #283248;
+      --secundario: #788196;
+      --borde: #e8ebf2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contenedor {
+      width: min(100% - 36px, 1000px);
+      margin: auto;
+    }
+
+    header {
+      padding: 20px 0;
+    }
+
+    .barra {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--azul-oscuro);
+      letter-spacing: -0.6px;
+    }
+
+    .logo {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--azul-claro);
+      font-size: 23px;
+    }
+
+    .etiqueta {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--azul);
+      background: var(--azul-claro);
+      padding: 7px 12px;
+      border-radius: 30px;
+    }
+
+    .hero {
+      padding: 38px 0 25px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .sobrelinea {
+      display: inline-block;
+      color: var(--azul);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: var(--azul-oscuro);
+      font-size: clamp(34px, 6vw, 53px);
+      line-height: 1.12;
+      letter-spacing: -1.8px;
+      margin-bottom: 19px;
+    }
+
+    h1 span {
+      color: var(--azul);
+    }
+
+    .descripcion {
+      color: var(--secundario);
+      font-size: 16px;
+      max-width: 440px;
+      margin-bottom: 25px;
+    }
+
+    .boton {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 23px;
+      background: var(--azul);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px #5269a82b;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .boton:hover {
+      background: var(--azul-oscuro);
+      transform: translateY(-2px);
+    }
+
+    .nota {
+      margin-top: 13px;
+      font-size: 12px;
+      color: var(--secundario);
+    }
+
+    .ilustracion {
+      position: relative;
+      min-height: 290px;
+      display: grid;
+      place-items: center;
+      border-radius: 32px;
+      background: linear-gradient(145deg, #e8edfb, #f0f3fa 65%, #e5f0eb);
+      overflow: hidden;
+    }
+
+    .circulo {
+      width: 185px;
+      height: 185px;
+      display: grid;
+      place-items: center;
+      background: #ffffffb8;
+      border: 1px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 15px 45px #293b6812;
+      font-size: 83px;
+    }
+
+    .flotante {
+      position: absolute;
+      background: white;
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 25px #293b6810;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--azul-oscuro);
+    }
+
+    .flotante.uno {
+      top: 30px;
+      left: 14px;
+    }
+
+    .flotante.dos {
+      right: 12px;
+      bottom: 28px;
+    }
+
+    .seccion {
+      padding: 36px 0 45px;
+    }
+
+    .encabezado-seccion {
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      color: var(--azul-oscuro);
+      font-size: 25px;
+      line-height: 1.3;
+      margin-bottom: 7px;
+    }
+
+    .subtitulo {
+      font-size: 14px;
+      color: var(--secundario);
+    }
+
+    .tarjetas {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .tarjeta {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      padding: 22px 18px;
+    }
+
+    .icono {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: var(--azul-claro);
+      font-size: 23px;
+      margin-bottom: 15px;
+    }
+
+    .tarjeta:nth-child(2) .icono {
+      background: var(--verde-claro);
+    }
+
+    .tarjeta:nth-child(3) .icono {
+      background: #f8eee3;
+    }
+
+    .tarjeta h3 {
+      font-size: 16px;
+      color: var(--azul-oscuro);
+      margin-bottom: 7px;
+    }
+
+    .tarjeta p {
+      color: var(--secundario);
+      font-size: 13px;
+    }
+
+    .frase {
+      background: var(--azul-oscuro);
+      color: white;
+      padding: 26px;
+      border-radius: 22px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .frase p {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .frase small {
+      display: block;
+      margin-top: 7px;
+      color: #d0d8ee;
+      font-size: 12px;
+    }
+
+    footer {
+      padding: 22px 0;
+      text-align: center;
+      border-top: 1px solid var(--borde);
+      color: var(--secundario);
+      font-size: 12px;
+    }
+
+    @media (max-width: 650px) {
+      .contenedor {
+        width: min(100% - 30px, 500px);
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .ilustracion {
+        min-height: 235px;
+      }
+
+      .circulo {
+        width: 145px;
+        height: 145px;
+        font-size: 66px;
+      }
+
+      .tarjetas {
+        grid-template-columns: 1fr;
+      }
+
+      .tarjeta {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 17px;
+      }
+
+      .icono {
+        flex-shrink: 0;
+        margin-bottom: 0;
+      }
+
+      .tarjeta h3 {
+        margin-top: 1px;
+      }
+
+      .etiqueta {
+        font-size: 10px;
+        padding: 6px 9px;
+      }
+
+      .marca {
+        font-size: 19px;
+      }
+
+      .logo {
+        width: 39px;
+        height: 39px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="contenedor barra">
+      <a class="marca" href="#" aria-label="Mi Rumbo, inicio">
+        <span class="logo">🧭</span>
+        <span>Mi Rumbo</span>
+      </a>
+      <span class="etiqueta">Tu futuro comienza hoy</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="contenedor hero-grid">
+        <div>
+          <span class="sobrelinea">Un espacio para descubrirte</span>
+
+          <h1>
+            Tu futuro.<br>
+            Tus decisiones.<br>
+            <span>Tu rumbo.</span>
+          </h1>
+
+          <p class="descripcion">
+            Elegir una carrera no siempre es fácil.
+            Conoce tus intereses, explora tus opciones
+            y empieza a construir el futuro que deseas.
+          </p>
+
+          <a class="boton" href="#descubre">
+            Descubre Mi Rumbo <span aria-hidden="true">→</span>
+          </a>
+
+          <p class="nota">
+            Sin presiones. Tu camino empieza por conocerte.
+          </p>
+        </div>
+
+        <div class="ilustracion" aria-label="Ilustración decorativa de una brújula">
+          <span class="flotante uno">✦ Nuevas posibilidades</span>
+          <div class="circulo" aria-hidden="true">🧭</div>
+          <span class="flotante dos">Tu historia, tu camino ✨</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="descubre">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <h2>Empieza por ti</h2>
+          <p class="subtitulo">
+            Tres pasos para explorar tus posibilidades.
+          </p>
+        </div>
+
+        <div class="tarjetas">
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">♡</div>
+            <div>
+              <h3>Conoce tus intereses</h3>
+              <p>
+                Descubre qué actividades, temas y áreas
+                despiertan tu curiosidad.
+              </p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">✧</div>
+            <div>
+              <h3>Explora carreras</h3>
+              <p>
+                Conoce distintas opciones académicas
+                y encuentra las que conectan contigo.
+              </p>
+            </div>
+          </article>
+
+          <article class="tarjeta">
+            <div class="icono" aria-hidden="true">↗</div>
+            <div>
+              <h3>Planea tu siguiente paso</h3>
+              <p>
+                Investiga universidades y empieza a
+                organizar tus metas académicas.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <div class="frase">
+        <p>
+          No necesitas tener toda tu vida resuelta
+          para dar el primer paso.
+        </p>
+        <small>Mi Rumbo · Orientación vocacional</small>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="contenedor">
+      Mi Rumbo © 2026 · Explora, descubre y decide.
+    </div>
+  </footer>
+</body>
+  </html>
