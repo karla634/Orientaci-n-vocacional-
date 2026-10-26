@@ -5,7 +5,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#142b50">
-<title>Mi Rumbo | Orientación vocacional</title>
+<meta name="description" content="Mi Rumbo te ayuda a explorar tus intereses, conocer carreras y organizar tus próximos pasos académicos.">
+<link rel="canonical" href="https://karla634.github.io/Orientaci-n-vocacional-/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mi Rumbo">
+<meta property="og:title" content="Mi Rumbo | Orientación vocacional">
+<meta property="og:description" content="Explora tus intereses, conoce carreras y organiza tus próximos pasos académicos.">
+<meta property="og:url" content="https://karla634.github.io/Orientaci-n-vocacional-/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mi Rumbo | Orientación vocacional">
+<meta name="twitter:description" content="Explora tus intereses, conoce carreras y organiza tus próximos pasos académicos.">
 <style>
 :root {
   --azul:#142b50;
@@ -25,7 +34,7 @@ header{background:var(--azul);color:white;padding:16px}
 .marca small{display:block;font-size:12px;color:#d9e3f1;font-weight:normal}
 main{max-width:900px;margin:auto;padding:20px 14px 40px}
 .pantalla{display:none!important}
-.pantalla.activa{display:block!important}
+.pantalla.activa{display:block!important;animation:aparecer .28s ease both}
 .hero{background:linear-gradient(140deg,var(--azul),var(--azul2));
 color:white;border-radius:22px;padding:27px 22px}
 .hero h1{font-size:clamp(30px,7vw,48px);line-height:1.15}
@@ -60,7 +69,62 @@ border-radius:12px;margin:9px 0;background:white}
 a{color:var(--azul)}
 footer{text-align:center;color:var(--suave);font-size:13px;padding:20px}
 @media(max-width:560px){.menu,.lista{grid-template-columns:1fr}.hero{padding:22px 18px}}
-</style>
+@keyframes aparecer {
+  from {opacity:0;transform:translateY(8px)}
+  to {opacity:1;transform:translateY(0)}
+}
+.boton,.opcion,.item {
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.boton:hover,.opcion:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(20,43,80,.12);
+}
+.boton:active,.opcion:active {
+  transform:scale(.98);
+}
+@media(prefers-reduced-motion:reduce) {
+  .pantalla.activa,.boton,.opcion,.item {
+    animation:none!important;
+    transition:none!important;
+    @keyframes aparecer {
+  from {opacity:0;transform:translateY(8px)}
+  to {opacity:1;transform:translateY(0)}
+}
+.boton,.opcion,.item {
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.boton:hover,.opcion:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(20,43,80,.12);
+}
+.boton:active,.opcion:active {
+  transform:scale(.98);
+}
+@media(prefers-reduced-motion:reduce) {
+  .pantalla.activa,.boton,.opcion,.item {
+    animation:none!important;
+    transition:none!important;
+@keyframes aparecer {
+  from {opacity:0;transform:translateY(8px)}
+  to {opacity:1;transform:translateY(0)}
+}
+.boton,.opcion,.item {
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.boton:hover,.opcion:hover {
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(20,43,80,.12);
+}
+.boton:active,.opcion:active {
+  transform:scale(.98);
+}
+@media(prefers-reduced-motion:reduce) {
+  .pantalla.activa,.boton,.opcion,.item {
+    animation:none!important;
+    transition:none!important;
+  }
+}
 </head>
 <body>
 <header><div class="marca">🧭 Mi Rumbo
@@ -72,12 +136,12 @@ footer{text-align:center;color:var(--suave);font-size:13px;padding:20px}
   <span class="etiqueta">Tu camino comienza contigo</span>
   <h1>Descubre posibilidades para tu futuro.</h1>
   <p>Explora tus intereses, conoce carreras y organiza tus próximos pasos.</p>
-  <button class="boton dorado" data-ir="menu">Comenzar mi camino →</button>
+  <button class="boton dorado" data-ir="menu">Entrar a Mi Rumbo → →</button>
  </div>
  <div class="tarjeta">
   <h2>¡Bienvenido/a a Mi Rumbo!</h2>
   <p>Un espacio para ayudarte a explorar opciones académicas y tomar decisiones con más información.</p>
-  <button class="boton azul" data-ir="menu">Entrar a Mi Rumbo</button>
+
   <button class="boton claro" data-ir="acerca">Conocer el proyecto</button>
  </div>
  <div class="aviso">Esta herramienta es orientativa. No diagnostica ni sustituye una evaluación psicométrica profesional.</div>
@@ -334,7 +398,7 @@ function pintarFavoritas() {
 const universidades = [
  {nombre:"UNAN-Managua",url:"https://www.unan.edu.ni/"},
  {nombre:"CUR Matagalpa",url:"https://admision.setec.edu.ni/"},
- {nombre:"Universidad Nacional Agraria (UNA)",url:"https://www.una.edu.ni/"},
+ {nombre:"Universidad Nacional Agraria (UNA)",url:"https://www.una.edu.ni/admision/"},
  {nombre:"UNAN-León",url:"https://www.unanleon.edu.ni/"},
  {nombre:"CUR Estelí",url:"https://admision.setec.edu.ni/"}
 ];
