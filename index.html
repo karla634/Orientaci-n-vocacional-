@@ -666,4 +666,56 @@ function pintarUniversidades() {
       "<div class='item'><h3>" + u.nombre + "</h3><p>" +
       u.detalle + "</p><a href='" + u.url +
       "' target='_blank' rel='noopener noreferrer'>Consultar sitio ↗</a></div>"
-    )
+    ).join("");
+}
+
+/* Plan de ingreso */
+const tareas = [
+  "Investigar carreras de mi interés",
+  "Consultar requisitos de admisión",
+  "Verificar fechas de prematrícula",
+  "Reunir documentos necesarios",
+  "Consultar becas y opciones de transporte"
+];
+
+function pintarTareas() {
+  const estado = leerGuardado("miRumboTareas", []);
+
+  document.getElementById("tareas").innerHTML = tareas.map((t, i) =>
+    "<label class='respuesta'><input type='checkbox' data-tarea='" +
+    i + "' " + (estado[i] ? "checked" : "") + "> " + t + "</label>"
+  ).join("");
+}
+
+function guardarTareas() {
+  const estado = tareas.map((t, i) => {
+    const casilla = document.querySelector('[data-tarea="' + i + '"]');
+    return casilla ? casilla.checked : false;
+  });
+
+  guardar("miRumboTareas", estado);
+}
+
+document.getElementById("tareas").addEventListener("change", function(e) {
+  if (e.target.matches("[data-tarea]")) guardarTareas();
+});
+
+/* Notas del plan */
+const notas = document.getElementById("notas");
+notas.value = leerGuardado("miRumboNotas", "");
+
+notas.addEventListener("input", function() {
+  guardar("miRumboNotas", notas.value);
+  document.getElementById("guardado").textContent =
+    "Notas guardadas en este navegador.";
+});
+
+/* Inicialización */
+pintarTareas();
+pintarPregunta();
+pintarCarreras();
+pintarUniversidades();
+pintarFavoritas();
+</script>
+</body>
+</html>
