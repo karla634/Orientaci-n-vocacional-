@@ -5,717 +5,279 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#142b50">
-<meta name="description" content="Mi Rumbo: explora tus intereses, conoce carreras y organiza tus próximos pasos académicos.">
-<meta property="og:title" content="Mi Rumbo | Orientación vocacional">
-<meta property="og:description" content="Explora. Descubre. Decide. Encuentra información para construir tu futuro académico.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://karla634.github.io/Orientaci-n-vocacional-/">
 <title>Mi Rumbo | Orientación vocacional</title>
-
 <style>
-:root {
-  --azul: #142b50;
-  --azul2: #203f69;
-  --hueso: #f7f3e9;
-  --blanco: #fffdf8;
-  --dorado: #e5c45b;
-  --texto: #26364b;
-  --borde: #e5dece;
-  --suave: #69778a;
-}
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--hueso);
-  color: var(--texto);
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-}
-header {
-  background: var(--azul);
-  color: white;
-  padding: 16px;
-}
-.marca {
-  max-width: 900px;
-  margin: auto;
-  font-size: 22px;
-  font-weight: bold;
-}
-.marca small {
-  display: block;
-  font-size: 12px;
-  color: #d9e3f1;
-  font-weight: normal;
-}
-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px 14px 40px;
-}
-.pantalla { display: none !important; }
-.pantalla.activa {
-  display: block !important;
-  animation: aparecer .3s ease both;
-}
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(7px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.tarjeta {
-  background: var(--blanco);
-  border: 1px solid var(--borde);
-  border-radius: 18px;
-  padding: 20px;
-  margin: 15px 0;
-  box-shadow: 0 5px 18px rgba(20,43,80,.035);
-}
-.bienvenida {
-  margin-top: 12px;
-  padding: 28px 22px;
-}
-.bienvenida h1 {
-  color: var(--azul);
-  font-size: clamp(28px,6vw,38px);
-  line-height: 1.2;
-  margin: 0 0 14px;
-}
-h2,h3 { color: var(--azul); line-height: 1.3; }
-.etiqueta {
-  display: inline-block;
-  background: #f4edcf;
-  color: #705a12;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 13px;
-}
-button,input,textarea { font: inherit; }
-button {
-  cursor: pointer;
-  transition: transform .18s ease, box-shadow .18s ease,
-    background-color .18s ease;
-}
-button:focus-visible,a:focus-visible,input:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid var(--dorado);
-  outline-offset: 3px;
-}
-button:active { transform: scale(.98); }
-button:disabled { opacity: .5; cursor: not-allowed; }
-.boton {
-  border: 0;
-  border-radius: 12px;
-  padding: 12px 16px;
-  min-height: 44px;
-  font-weight: bold;
-  margin: 4px 4px 4px 0;
-}
-.boton:hover { box-shadow: 0 4px 12px rgba(20,43,80,.12); }
-.dorado { background: var(--dorado); color: #302b1b; }
-.azul { background: var(--azul); color: white; }
-.claro { background: #edf0f4; color: var(--azul); }
-.boton-entrada {
-  width: 100%;
-  max-width: 320px;
-  margin-top: 12px;
-}
-.menu,.lista {
-  display: grid;
-  grid-template-columns: repeat(2,minmax(0,1fr));
-  gap: 12px;
-}
-.opcion,.item {
-  background: var(--blanco);
-  border: 1px solid var(--borde);
-  border-radius: 16px;
-  padding: 16px;
-  text-align: left;
-  min-width: 0;
-}
-.opcion:hover,.item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(20,43,80,.07);
-}
-.opcion strong {
-  display: block;
-  color: var(--azul);
-  font-size: 16px;
-}
-.opcion small {
-  display: block;
-  color: var(--suave);
-  margin-top: 6px;
-}
-.icono { font-size: 24px; display: block; margin-bottom: 8px; }
-.campo {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--borde);
-  border-radius: 10px;
-  margin: 10px 0 16px;
-  background: white;
-  color: var(--texto);
-}
-.respuesta {
-  display: block;
-  padding: 12px;
-  border: 1px solid var(--borde);
-  border-radius: 12px;
-  margin: 9px 0;
-  background: white;
-}
-.respuesta input { margin-right: 8px; }
-.aviso {
-  background: #f4edcf;
-  border-radius: 12px;
-  padding: 13px;
-  margin: 15px 0;
-  font-size: 14px;
-}
-.muted { color: var(--suave); }
-.fila { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-.item h3 { margin: 8px 0; }
-a { color: var(--azul); overflow-wrap: anywhere; }
-footer {
-  text-align: center;
-  color: var(--suave);
-  font-size: 13px;
-  padding: 20px;
-}
-@media(max-width:560px) {
-  .menu,.lista { grid-template-columns: 1fr; }
-  .bienvenida { padding: 24px 18px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-}
+:root{--azul:#142b50;--hueso:#f7f3e9;--blanco:#fffdf8;--dorado:#e5c45b;--texto:#26364b;--borde:#e5dece;--suave:#69778a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--hueso);color:var(--texto);font-family:Arial,sans-serif;line-height:1.6}
+header{background:var(--azul);color:white;padding:16px}
+.marca{max-width:900px;margin:auto;font-size:22px;font-weight:bold}
+.marca small{display:block;font-size:12px;color:#d9e3f1;font-weight:normal}
+main{max-width:900px;margin:auto;padding:20px 14px 40px}
+.pantalla{display:none!important}
+.pantalla.activa{display:block!important}
+.tarjeta{background:var(--blanco);border:1px solid var(--borde);border-radius:18px;padding:20px;margin:15px 0;box-shadow:0 5px 18px #142b5009}
+.bienvenida{margin-top:12px;padding:28px 22px}
+.bienvenida h1{color:var(--azul);font-size:clamp(28px,6vw,38px);line-height:1.2}
+h2,h3{color:var(--azul);line-height:1.3}
+.etiqueta{display:inline-block;background:#f4edcf;color:#705a12;padding:4px 10px;border-radius:20px;font-size:13px}
+button,input,textarea{font:inherit}
+button{cursor:pointer;touch-action:manipulation}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--dorado);outline-offset:3px}
+.boton{border:0;border-radius:12px;padding:12px 16px;min-height:44px;font-weight:bold;margin:4px 4px 4px 0}
+.azul{background:var(--azul);color:white}
+.dorado{background:var(--dorado);color:#302b1b}
+.claro{background:#edf0f4;color:var(--azul)}
+.boton-entrada{width:100%;max-width:320px;margin-top:12px}
+.menu,.lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.opcion,.item{background:var(--blanco);border:1px solid var(--borde);border-radius:16px;padding:16px;text-align:left;min-width:0}
+.opcion strong{display:block;color:var(--azul);font-size:16px}
+.opcion small{display:block;color:var(--suave);margin-top:6px}
+.icono{font-size:24px;display:block;margin-bottom:8px}
+.campo{display:block;width:100%;padding:12px;border:1px solid var(--borde);border-radius:10px;margin:10px 0 16px;background:white;color:var(--texto)}
+.respuesta{display:block;padding:12px;border:1px solid var(--borde);border-radius:12px;margin:9px 0;background:white}
+.respuesta input{margin-right:8px}
+.aviso{background:#f4edcf;border-radius:12px;padding:13px;margin:15px 0;font-size:14px}
+.muted,footer{color:var(--suave)}
+.fila{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+a{color:var(--azul);overflow-wrap:anywhere}
+footer{text-align:center;font-size:13px;padding:20px}
+@media(max-width:560px){.menu,.lista{grid-template-columns:1fr}.bienvenida{padding:24px 18px}}
 </style>
 </head>
-
 <body>
-<header>
-  <div class="marca">
-    🧭 Mi Rumbo
-    <small>Explora. Descubre. Decide.</small>
-  </div>
-</header>
-
+<header><div class="marca">🧭 Mi Rumbo<small>Explora. Descubre. Decide.</small></div></header>
 <main>
 <section id="bienvenida" class="pantalla activa">
-  <div class="tarjeta bienvenida">
-    <span class="etiqueta">Explora. Descubre. Decide.</span>
-    <h1>¡Bienvenido/a a Mi Rumbo!</h1>
-    <p>Un espacio para explorar tus intereses, conocer opciones académicas y tomar decisiones con más información.</p>
-    <button type="button" class="boton azul boton-entrada" data-ir="menu">
-      Entrar a Mi Rumbo
-    </button>
-  </div>
-  <p class="aviso">Esta herramienta es orientativa. No diagnostica ni sustituye una evaluación psicométrica profesional.</p>
+<div class="tarjeta bienvenida">
+<span class="etiqueta">Explora. Descubre. Decide.</span>
+<h1>¡Bienvenido/a a Mi Rumbo!</h1>
+<p>Un espacio para explorar tus intereses, conocer opciones académicas y tomar decisiones con más información.</p>
+<button type="button" class="boton azul boton-entrada" onclick="mostrarPantalla('menu')">Entrar a Mi Rumbo</button>
+</div>
+<p class="aviso">Esta herramienta es orientativa. No diagnostica ni sustituye una evaluación psicométrica profesional.</p>
 </section>
 
 <section id="menu" class="pantalla">
-  <h2>Tu espacio de orientación</h2>
-  <p>Elige qué deseas explorar.</p>
-  <div class="menu">
-    <button type="button" class="opcion" data-ir="recorrido">
-      <span class="icono">🧭</span>
-      <strong>Recorrido vocacional</strong>
-      <small>Explora tus intereses.</small>
-    </button>
-    <button type="button" class="opcion" data-ir="carreras">
-      <span class="icono">📚</span>
-      <strong>Explorar carreras</strong>
-      <small>Busca opciones académicas.</small>
-    </button>
-    <button type="button" class="opcion" data-ir="universidades">
-      <span class="icono">🎓</span>
-      <strong>Universidades</strong>
-      <small>Consulta instituciones.</small>
-    </button>
-    <button type="button" class="opcion" data-ir="favoritas">
-      <span class="icono">⭐</span>
-      <strong>Mis favoritas</strong>
-      <small>Guarda carreras.</small>
-    </button>
-    <button type="button" class="opcion" data-ir="plan">
-      <span class="icono">📝</span>
-      <strong>Mi plan de ingreso</strong>
-      <small>Organiza tus pendientes.</small>
-    </button>
-    <button type="button" class="opcion" data-ir="recursos">
-      <span class="icono">💡</span>
-      <strong>Guía y recursos</strong>
-      <small>Prepara tus próximos pasos.</small>
-    </button>
-    <button type="button" class="opcion" data-ir="acerca">
-      <span class="icono">ℹ️</span>
-      <strong>Acerca del proyecto</strong>
-      <small>Conoce Mi Rumbo.</small>
-    </button>
-  </div>
-  <button type="button" class="boton claro" data-ir="bienvenida">← Inicio</button>
+<h2>Tu espacio de orientación</h2>
+<p>Elige qué deseas explorar.</p>
+<div class="menu">
+<button class="opcion" data-ir="recorrido"><span class="icono">🧭</span><strong>Recorrido vocacional</strong><small>Explora tus intereses.</small></button>
+<button class="opcion" data-ir="carreras"><span class="icono">📚</span><strong>Explorar carreras</strong><small>Busca opciones académicas.</small></button>
+<button class="opcion" data-ir="universidades"><span class="icono">🎓</span><strong>Universidades</strong><small>Consulta instituciones.</small></button>
+<button class="opcion" data-ir="favoritas"><span class="icono">⭐</span><strong>Mis favoritas</strong><small>Guarda carreras.</small></button>
+<button class="opcion" data-ir="plan"><span class="icono">📝</span><strong>Mi plan de ingreso</strong><small>Organiza tus pendientes.</small></button>
+<button class="opcion" data-ir="recursos"><span class="icono">💡</span><strong>Guía y recursos</strong><small>Prepara tus próximos pasos.</small></button>
+<button class="opcion" data-ir="acerca"><span class="icono">ℹ️</span><strong>Acerca del proyecto</strong><small>Conoce Mi Rumbo.</small></button>
+</div>
+<button class="boton claro" data-ir="bienvenida">← Inicio</button>
 </section>
 
 <section id="recorrido" class="pantalla">
-  <h2>Recorrido vocacional</h2>
-  <div class="tarjeta">
-    <p class="muted">Selecciona la respuesta que más se acerque a tus intereses.</p>
-    <p id="contador"></p>
-    <div id="pregunta"></div>
-    <div class="fila">
-      <button type="button" class="boton claro" id="anterior">← Anterior</button>
-      <button type="button" class="boton dorado" id="siguiente">Continuar →</button>
-    </div>
-  </div>
-  <p class="aviso">Actividad educativa orientativa; no es una prueba psicométrica validada ni el CHASIDE oficial.</p>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Recorrido vocacional</h2>
+<div class="tarjeta">
+<p class="muted">Selecciona la respuesta que más se acerque a tus intereses.</p>
+<p id="contador"></p><div id="pregunta"></div>
+<div class="fila"><button class="boton claro" id="anterior">← Anterior</button><button class="boton dorado" id="siguiente">Continuar →</button></div>
+</div>
+<p class="aviso">Actividad educativa orientativa; no es una prueba psicométrica validada ni el CHASIDE oficial.</p>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="resultados" class="pantalla">
-  <h2>Tu mapa de intereses</h2>
-  <div class="tarjeta">
-    <p>Estas son áreas que puedes explorar a partir de tus respuestas.</p>
-    <div id="resultadoAreas"></div>
-    <button type="button" class="boton dorado" data-ir="carreras">Explorar carreras →</button>
-    <button type="button" class="boton claro" id="repetir">Volver a responder</button>
-  </div>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Tu mapa de intereses</h2>
+<div class="tarjeta">
+<p>Estas son áreas que puedes explorar a partir de tus respuestas.</p>
+<div id="resultadoAreas"></div>
+<button class="boton dorado" data-ir="carreras">Explorar carreras →</button>
+<button class="boton claro" id="repetir">Volver a responder</button>
+</div>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="carreras" class="pantalla">
-  <h2>Explorar carreras</h2>
-  <div class="tarjeta">
-    <p class="muted">Busca por nombre o área de interés.</p>
-    <input class="campo" id="buscarCarrera" placeholder="Ej.: Psicología, agronomía..." aria-label="Buscar carrera">
-    <div id="listaCarreras" class="lista"></div>
-  </div>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Explorar carreras</h2>
+<div class="tarjeta">
+<p class="muted">Busca por nombre o área de interés.</p>
+<input class="campo" id="buscarCarrera" placeholder="Ej.: Psicología, agronomía..." aria-label="Buscar carrera">
+<div id="listaCarreras" class="lista"></div>
+</div>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="universidades" class="pantalla">
-  <h2>Directorio académico</h2>
-  <div class="tarjeta">
-    <p class="muted">Consulta los sitios institucionales para verificar carreras, sedes y requisitos vigentes.</p>
-    <div id="listaUniversidades" class="lista"></div>
-  </div>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Directorio académico</h2>
+<div class="tarjeta">
+<p class="muted">Consulta los sitios institucionales para verificar las carreras, sedes y requisitos vigentes.</p>
+<div id="listaUniversidades" class="lista"></div>
+</div>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="favoritas" class="pantalla">
-  <h2>Mis carreras favoritas ⭐</h2>
-  <div class="tarjeta">
-    <div id="listaFavoritas"></div>
-    <button type="button" class="boton azul" data-ir="carreras">Buscar carreras</button>
-  </div>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Mis carreras favoritas ⭐</h2>
+<div class="tarjeta"><div id="listaFavoritas"></div><button class="boton azul" data-ir="carreras">Buscar carreras</button></div>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="plan" class="pantalla">
-  <h2>Mi plan de ingreso</h2>
-  <div class="tarjeta">
-    <p>Marca las tareas que hayas completado.</p>
-    <div id="tareas"></div>
-    <label for="notas"><strong>Mis notas y fechas importantes</strong></label>
-    <textarea class="campo" id="notas" rows="5" placeholder="Anota requisitos, fechas o dudas..."></textarea>
-    <p id="guardado" class="muted">Tus notas se guardan en este navegador.</p>
-  </div>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Mi plan de ingreso</h2>
+<div class="tarjeta">
+<p>Marca las tareas que hayas completado.</p>
+<div id="tareas"></div>
+<label for="notas"><strong>Mis notas y fechas importantes</strong></label>
+<textarea class="campo" id="notas" rows="5" placeholder="Anota requisitos, fechas o dudas..."></textarea>
+<p id="guardado" class="muted">Tus notas se guardan en este navegador cuando el almacenamiento está disponible.</p>
+</div>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="recursos" class="pantalla">
-  <h2>Guía y recursos</h2>
-  <div class="tarjeta">
-    <h3>Antes de elegir una carrera</h3>
-    <ul>
-      <li>Identifica los temas y actividades que disfrutas.</li>
-      <li>Investiga qué se estudia en cada carrera.</li>
-      <li>Compara duración, requisitos, costos y becas.</li>
-      <li>Consulta fuentes oficiales y habla con estudiantes.</li>
-    </ul>
-    <h3>Admisión y matrícula</h3>
-    <p>Consulta las convocatorias y los requisitos en los portales oficiales.</p>
-    <p><a href="https://admision.setec.edu.ni/" target="_blank" rel="noopener noreferrer">Abrir portal de admisión SETEC ↗</a></p>
-    <p><a href="https://www.unan.edu.ni/" target="_blank" rel="noopener noreferrer">UNAN-Managua ↗</a></p>
-    <p><a href="https://www.una.edu.ni/" target="_blank" rel="noopener noreferrer">Universidad Nacional Agraria (UNA) ↗</a></p>
-    <p class="muted">Verifica fechas, carreras y requisitos en los portales oficiales. El video y el logo se incorporarán cuando estén disponibles.</p>
-  </div>
-  <button type="button" class="boton claro" data-ir="menu">← Menú</button>
+<h2>Guía y recursos</h2>
+<div class="tarjeta">
+<h3>Antes de elegir una carrera</h3>
+<ul>
+<li>Identifica los temas y actividades que disfrutas.</li>
+<li>Investiga qué se estudia en cada carrera.</li>
+<li>Compara duración, requisitos, costos y becas.</li>
+<li>Consulta fuentes oficiales y habla con estudiantes.</li>
+</ul>
+<h3>Admisión y matrícula</h3>
+<p>Consulta las convocatorias y los requisitos en los portales oficiales.</p>
+<p><a href="https://admision.setec.edu.ni/" target="_blank" rel="noopener noreferrer">Abrir portal de admisión SETEC ↗</a></p>
+<p><a href="https://www.una.edu.ni/admision/" target="_blank" rel="noopener noreferrer">Admisión de la UNA ↗</a></p>
+<p class="muted">El video de matrícula se incorporará cuando esté disponible.</p>
+</div>
+<button class="boton claro" data-ir="menu">← Menú</button>
 </section>
 
 <section id="acerca" class="pantalla">
-  <h2>Acerca de Mi Rumbo</h2>
-  <div class="tarjeta">
-    <span class="etiqueta">Explora. Descubre. Decide.</span>
-    <h3>¿Qué es Mi Rumbo?</h3>
-    <p>Una herramienta educativa para explorar intereses, conocer opciones académicas y organizar próximos pasos.</p>
-    <h3>Importante</h3>
-    <p>Mi Rumbo no elige una carrera por ti. Sus sugerencias son orientativas y deben complementarse con investigación y orientación profesional.</p>
-    <button type="button" class="boton dorado" data-ir="menu">Ir al menú →</button>
-  </div>
-  <button type="button" class="boton claro" data-ir="bienvenida">← Inicio</button>
+<h2>Acerca de Mi Rumbo</h2>
+<div class="tarjeta">
+<span class="etiqueta">Explora. Descubre. Decide.</span>
+<h3>¿Qué es Mi Rumbo?</h3>
+<p>Una herramienta educativa para explorar intereses, conocer opciones académicas y organizar próximos pasos.</p>
+<h3>Importante</h3>
+<p>Mi Rumbo no elige una carrera por ti. Sus sugerencias son orientativas y deben complementarse con investigación y orientación profesional.</p>
+<button class="boton dorado" data-ir="menu">Ir al menú →</button>
+</div>
+<button class="boton claro" data-ir="bienvenida">← Inicio</button>
 </section>
 </main>
-
 <footer>Mi Rumbo · Herramienta educativa de orientación vocacional</footer>
 
 <script>
-"use strict";
-
-/* Navegación entre pantallas */
-const pantallas = Array.from(document.querySelectorAll(".pantalla"));
-
-function ir(id) {
-  const destino = document.getElementById(id);
-  if (!destino || !destino.classList.contains("pantalla")) return;
-
-  pantallas.forEach(p => p.classList.toggle("activa", p.id === id));
-  window.scrollTo({ top: 0, behavior: "smooth" });
-
-  if (id === "recorrido") pintarPregunta();
-  if (id === "carreras") pintarCarreras();
-  if (id === "universidades") pintarUniversidades();
-  if (id === "favoritas") pintarFavoritas();
+function mostrarPantalla(id){
+const destino=document.getElementById(id);
+if(!destino)return;
+document.querySelectorAll('.pantalla').forEach(p=>p.classList.remove('activa'));
+destino.classList.add('activa');
+window.scrollTo(0,0);
+if(id==='recorrido')pintarPregunta();
+if(id==='carreras')pintarCarreras();
+if(id==='universidades')pintarUniversidades();
+if(id==='favoritas')pintarFavoritas();
 }
-
-document.addEventListener("click", function(e) {
-  const boton = e.target.closest("[data-ir]");
-  if (boton) {
-    e.preventDefault();
-    ir(boton.dataset.ir);
-    return;
-  }
-
-  const favorito = e.target.closest("[data-fav]");
-  if (favorito) {
-    cambiarFavorita(favorito.dataset.fav);
-  }
+document.addEventListener('click',function(e){
+const b=e.target.closest('[data-ir]');
+if(b){e.preventDefault();mostrarPantalla(b.dataset.ir);return;}
+const f=e.target.closest('[data-fav]');
+if(f)cambiarFavorita(f.dataset.fav);
 });
+function leer(k,def){try{const v=localStorage.getItem(k);return v===null?def:JSON.parse(v)}catch(e){return def}}
+function guardar(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
 
-function leerGuardado(clave, alternativa) {
-  try {
-    const valor = localStorage.getItem(clave);
-    return valor === null ? alternativa : JSON.parse(valor);
-  } catch (e) {
-    return alternativa;
-  }
-}
-
-function guardar(clave, valor) {
-  try {
-    localStorage.setItem(clave, JSON.stringify(valor));
-  } catch (e) {
-    // La aplicación puede funcionar aunque no se puedan guardar datos.
-  }
-}
-
-/* Áreas de interés */
-const areas = {
-  H: {
-    nombre: "Humanidades y ciencias sociales",
-    carreras: ["Psicología", "Trabajo Social", "Derecho", "Educación", "Sociología", "Comunicación"]
-  },
-  S: {
-    nombre: "Ciencias de la salud",
-    carreras: ["Medicina", "Enfermería", "Psicología", "Farmacia", "Nutrición"]
-  },
-  A: {
-    nombre: "Arte y creatividad",
-    carreras: ["Diseño Gráfico", "Artes", "Publicidad", "Comunicación Audiovisual"]
-  },
-  C: {
-    nombre: "Administración y organización",
-    carreras: ["Administración de Empresas", "Contaduría Pública", "Economía", "Marketing"]
-  },
-  I: {
-    nombre: "Ingeniería y tecnología",
-    carreras: ["Ingeniería en Sistemas", "Ingeniería Civil", "Desarrollo de Software"]
-  },
-  E: {
-    nombre: "Ciencias exactas y agrarias",
-    carreras: ["Biología", "Química", "Ingeniería Agronómica", "Ciencias Ambientales"]
-  }
+const areas={
+H:{nombre:'Humanidades y ciencias sociales',carreras:['Psicología','Trabajo Social','Derecho','Educación','Sociología','Comunicación']},
+S:{nombre:'Ciencias de la salud',carreras:['Medicina','Enfermería','Psicología','Farmacia','Nutrición']},
+A:{nombre:'Arte y creatividad',carreras:['Diseño Gráfico','Artes','Publicidad','Comunicación Audiovisual']},
+C:{nombre:'Administración y organización',carreras:['Administración de Empresas','Contaduría Pública','Economía','Marketing']},
+I:{nombre:'Ingeniería y tecnología',carreras:['Ingeniería en Sistemas','Ingeniería Civil','Desarrollo de Software']},
+E:{nombre:'Ciencias exactas y agrarias',carreras:['Biología','Química','Ingeniería Agronómica','Ciencias Ambientales']}
 };
-
-/* Cuestionario vocacional */
-const preguntas = [
-  {
-    q: "¿Qué actividad te gustaría hacer?",
-    o: [
-      ["Escuchar y apoyar a personas", "H"],
-      ["Organizar proyectos", "C"],
-      ["Crear diseños", "A"],
-      ["Resolver problemas científicos o técnicos", "I"]
-    ]
-  },
-  {
-    q: "¿Qué tema te da más curiosidad?",
-    o: [
-      ["Conducta y relaciones humanas", "H"],
-      ["Empresas y proyectos", "C"],
-      ["Arte y comunicación", "A"],
-      ["Tecnología y naturaleza", "E"]
-    ]
-  },
-  {
-    q: "¿Qué te daría más satisfacción?",
-    o: [
-      ["Ayudar al bienestar de alguien", "S"],
-      ["Coordinar un equipo", "C"],
-      ["Crear algo original", "A"],
-      ["Investigar una solución", "I"]
-    ]
-  },
-  {
-    q: "¿Qué te gustaría aprender?",
-    o: [
-      ["Orientar o enseñar", "H"],
-      ["Administrar recursos", "C"],
-      ["Diseñar materiales", "A"],
-      ["Programar o experimentar", "I"]
-    ]
-  },
-  {
-    q: "¿Dónde te imaginas trabajando?",
-    o: [
-      ["Atendiendo personas", "S"],
-      ["En una empresa", "C"],
-      ["En un espacio creativo", "A"],
-      ["En un laboratorio o entorno técnico", "E"]
-    ]
-  },
-  {
-    q: "¿Qué habilidad quisieras desarrollar?",
-    o: [
-      ["Escuchar y comunicar", "H"],
-      ["Organizar y decidir", "C"],
-      ["Imaginar y crear", "A"],
-      ["Analizar e investigar", "I"]
-    ]
-  }
+const preguntas=[
+{q:'¿Qué actividad te gustaría hacer?',o:[['Escuchar y apoyar a personas','H'],['Organizar proyectos','C'],['Crear diseños','A'],['Resolver problemas científicos o técnicos','I']]},
+{q:'¿Qué tema te da más curiosidad?',o:[['Conducta y relaciones humanas','H'],['Empresas y proyectos','C'],['Arte y comunicación','A'],['Tecnología y naturaleza','E']]},
+{q:'¿Qué te daría más satisfacción?',o:[['Ayudar al bienestar de alguien','S'],['Coordinar un equipo','C'],['Crear algo original','A'],['Investigar una solución','I']]},
+{q:'¿Qué te gustaría aprender?',o:[['Orientar o enseñar','H'],['Administrar recursos','C'],['Diseñar materiales','A'],['Programar o experimentar','I']]},
+{q:'¿Dónde te imaginas trabajando?',o:[['Atendiendo personas','S'],['En una empresa','C'],['En un espacio creativo','A'],['En un laboratorio o entorno técnico','E']]},
+{q:'¿Qué habilidad quisieras desarrollar?',o:[['Escuchar y comunicar','H'],['Organizar y decidir','C'],['Imaginar y crear','A'],['Analizar e investigar','I']]}
 ];
-
-let indice = 0;
-let respuestas = Array(preguntas.length).fill("");
-
-function pintarPregunta() {
-  const p = preguntas[indice];
-
-  document.getElementById("contador").textContent =
-    "Pregunta " + (indice + 1) + " de " + preguntas.length;
-
-  document.getElementById("pregunta").innerHTML =
-    "<h3>" + p.q + "</h3>" +
-    p.o.map((op, i) =>
-      '<label class="respuesta">' +
-      '<input type="radio" name="respuesta" value="' + i + '" ' +
-      (respuestas[indice] === op[1] ? "checked" : "") + '> ' +
-      op[0] + '</label>'
-    ).join("");
-
-  document.getElementById("anterior").disabled = indice === 0;
-  document.getElementById("siguiente").textContent =
-    indice === preguntas.length - 1 ? "Ver resultados →" : "Continuar →";
+let indice=0;
+let respuestas=Array(preguntas.length).fill('');
+function pintarPregunta(){
+const p=preguntas[indice];
+document.getElementById('contador').textContent='Pregunta '+(indice+1)+' de '+preguntas.length;
+document.getElementById('pregunta').innerHTML='<h3>'+p.q+'</h3>'+p.o.map((op,i)=>'<label class="respuesta"><input type="radio" name="respuesta" value="'+i+'" '+(respuestas[indice]===op[1]?'checked':'')+'> '+op[0]+'</label>').join('');
+document.getElementById('anterior').disabled=indice===0;
+document.getElementById('siguiente').textContent=indice===preguntas.length-1?'Ver resultados →':'Continuar →';
 }
-
-document.getElementById("pregunta").addEventListener("change", function(e) {
-  if (e.target.name === "respuesta") {
-    respuestas[indice] = preguntas[indice].o[Number(e.target.value)][1];
-  }
+document.getElementById('pregunta').addEventListener('change',function(e){
+if(e.target.name==='respuesta')respuestas[indice]=preguntas[indice].o[Number(e.target.value)][1];
+});
+document.getElementById('anterior').addEventListener('click',function(){if(indice>0){indice--;pintarPregunta()}});
+document.getElementById('siguiente').addEventListener('click',function(){
+if(!respuestas[indice]){alert('Selecciona una respuesta para continuar.');return}
+if(indice<preguntas.length-1){indice++;pintarPregunta()}
+else{mostrarResultados();mostrarPantalla('resultados')}
+});
+function mostrarResultados(){
+const puntos={};
+respuestas.forEach(a=>{puntos[a]=(puntos[a]||0)+1});
+const orden=Object.keys(puntos).sort((a,b)=>puntos[b]-puntos[a]);
+document.getElementById('resultadoAreas').innerHTML=orden.slice(0,3).map(c=>'<div class="tarjeta"><h3>'+areas[c].nombre+'</h3><p>Carreras que puedes investigar: '+areas[c].carreras.join(', ')+'.</p></div>').join('');
+}
+document.getElementById('repetir').addEventListener('click',function(){
+indice=0;respuestas=Array(preguntas.length).fill('');pintarPregunta();mostrarPantalla('recorrido');
 });
 
-document.getElementById("anterior").addEventListener("click", function() {
-  if (indice > 0) {
-    indice--;
-    pintarPregunta();
-  }
-});
-
-document.getElementById("siguiente").addEventListener("click", function() {
-  if (!respuestas[indice]) {
-    alert("Selecciona una respuesta para continuar.");
-    return;
-  }
-
-  if (indice < preguntas.length - 1) {
-    indice++;
-    pintarPregunta();
-  } else {
-    mostrarResultados();
-    ir("resultados");
-  }
-});
-
-function mostrarResultados() {
-  const puntos = {};
-
-  respuestas.forEach(a => {
-    puntos[a] = (puntos[a] || 0) + 1;
-  });
-
-  const orden = Object.keys(puntos).sort((a, b) => puntos[b] - puntos[a]);
-
-  document.getElementById("resultadoAreas").innerHTML =
-    orden.slice(0, 3).map(c =>
-      "<div class='tarjeta'><h3>" + areas[c].nombre +
-      "</h3><p>Carreras que puedes investigar: " +
-      areas[c].carreras.join(", ") + ".</p></div>"
-    ).join("");
+const listaCarreras=Object.keys(areas).reduce((ac,k)=>{
+areas[k].carreras.forEach(n=>{if(!ac.some(c=>c.nombre===n))ac.push({nombre:n,area:areas[k].nombre})});
+return ac;
+},[]);
+let favoritas=leer('miRumboFavoritas',[]);
+if(!Array.isArray(favoritas))favoritas=[];
+function pintarCarreras(){
+const filtro=document.getElementById('buscarCarrera').value.toLowerCase().trim();
+const datos=listaCarreras.filter(c=>(c.nombre+' '+c.area).toLowerCase().includes(filtro));
+document.getElementById('listaCarreras').innerHTML=datos.length?datos.map(c=>'<div class="item"><h3>'+c.nombre+'</h3><p>'+c.area+'</p><button class="boton '+(favoritas.includes(c.nombre)?'azul':'dorado')+'" data-fav="'+c.nombre+'">'+(favoritas.includes(c.nombre)?'★ Guardada':'☆ Guardar favorita')+'</button></div>').join(''):'<p>No encontramos coincidencias. Prueba con otra palabra.</p>';
+}
+document.getElementById('buscarCarrera').addEventListener('input',pintarCarreras);
+function cambiarFavorita(n){
+favoritas=favoritas.includes(n)?favoritas.filter(x=>x!==n):favoritas.concat(n);
+guardar('miRumboFavoritas',favoritas);pintarCarreras();pintarFavoritas();
+}
+function pintarFavoritas(){
+document.getElementById('listaFavoritas').innerHTML=favoritas.length?favoritas.map(n=>'<div class="item"><strong>'+n+'</strong> <button class="boton claro" data-fav="'+n+'">Quitar</button></div>').join(''):'<p class="muted">Todavía no has guardado carreras favoritas.</p>';
 }
 
-document.getElementById("repetir").addEventListener("click", function() {
-  indice = 0;
-  respuestas = Array(preguntas.length).fill("");
-  pintarPregunta();
-  ir("recorrido");
-});
-
-/* Catálogo y búsqueda de carreras */
-const listaCarreras = Object.entries(areas)
-  .flatMap(([codigo, area]) => area.carreras.map(nombre => ({
-    nombre,
-    area: area.nombre
-  })))
-  .filter((c, i, arr) =>
-    arr.findIndex(x => x.nombre === c.nombre) === i
-  );
-
-let favoritas = leerGuardado("miRumboFavoritas", []);
-
-function pintarCarreras() {
-  const filtro = document.getElementById("buscarCarrera").value
-    .toLowerCase().trim();
-
-  const datos = listaCarreras.filter(c =>
-    (c.nombre + " " + c.area).toLowerCase().includes(filtro)
-  );
-
-  document.getElementById("listaCarreras").innerHTML = datos.length
-    ? datos.map(c =>
-      "<div class='item'><h3>" + c.nombre + "</h3><p>" + c.area +
-      "</p><button type='button' class='boton " +
-      (favoritas.includes(c.nombre) ? "azul" : "dorado") +
-      "' data-fav='" + c.nombre + "'>" +
-      (favoritas.includes(c.nombre) ? "★ Guardada" : "☆ Guardar favorita") +
-      "</button></div>"
-    ).join("")
-    : "<p>No encontramos coincidencias. Prueba con otra palabra.</p>";
-}
-
-document.getElementById("buscarCarrera").addEventListener("input", pintarCarreras);
-
-function cambiarFavorita(nombre) {
-  favoritas = favoritas.includes(nombre)
-    ? favoritas.filter(x => x !== nombre)
-    : [...favoritas, nombre];
-
-  guardar("miRumboFavoritas", favoritas);
-  pintarCarreras();
-  pintarFavoritas();
-}
-
-function pintarFavoritas() {
-  const el = document.getElementById("listaFavoritas");
-
-  el.innerHTML = favoritas.length
-    ? favoritas.map(n =>
-      "<div class='item'><strong>" + n +
-      "</strong><p><button type='button' class='boton claro' data-fav='" +
-      n + "'>Quitar de favoritas</button></p></div>"
-    ).join("")
-    : "<p class='muted'>Todavía no has guardado carreras favoritas.</p>";
-}
-
-/* Directorio universitario */
-const universidades = [
-  {
-    nombre: "UNAN-Managua",
-    detalle: "Sitio oficial de la universidad",
-    url: "https://www.unan.edu.ni/"
-  },
-  {
-    nombre: "CUR Matagalpa",
-    detalle: "Portal oficial de admisión y oferta académica",
-    url: "https://admision.setec.edu.ni/"
-  },
-  {
-    nombre: "Universidad Nacional Agraria (UNA)",
-    detalle: "Sitio oficial de la universidad",
-    url: "https://www.una.edu.ni/"
-  },
-  {
-    nombre: "UNAN-León",
-    detalle: "Sitio oficial de la universidad",
-    url: "https://www.unanleon.edu.ni/"
-  },
-  {
-    nombre: "CUR Estelí",
-    detalle: "Portal oficial de admisión y oferta académica",
-    url: "https://admision.setec.edu.ni/"
-  }
+const universidades=[
+{nombre:'UNAN-Managua',detalle:'Sitio oficial de la universidad',url:'https://www.unan.edu.ni/'},
+{nombre:'CUR Matagalpa',detalle:'Portal oficial de admisión',url:'https://admision.setec.edu.ni/'},
+{nombre:'Universidad Nacional Agraria (UNA)',detalle:'Admisión y oferta académica',url:'https://www.una.edu.ni/admision/'},
+{nombre:'UNAN-León',detalle:'Sitio oficial de la universidad',url:'https://www.unanleon.edu.ni/'},
+{nombre:'CUR Estelí',detalle:'Portal oficial de admisión',url:'https://admision.setec.edu.ni/'}
 ];
-
-function pintarUniversidades() {
-  document.getElementById("listaUniversidades").innerHTML =
-    universidades.map(u =>
-      "<div class='item'><h3>" + u.nombre + "</h3><p>" +
-      u.detalle + "</p><a href='" + u.url +
-      "' target='_blank' rel='noopener noreferrer'>Consultar sitio ↗</a></div>"
-    ).join("");
+function pintarUniversidades(){
+document.getElementById('listaUniversidades').innerHTML=universidades.map(u=>'<div class="item"><h3>'+u.nombre+'</h3><p>'+u.detalle+'</p><a href="'+u.url+'" target="_blank" rel="noopener noreferrer">Consultar sitio ↗</a></div>').join('');
 }
 
-/* Plan de ingreso */
-const tareas = [
-  "Investigar carreras de mi interés",
-  "Consultar requisitos de admisión",
-  "Verificar fechas de prematrícula",
-  "Reunir documentos necesarios",
-  "Consultar becas y opciones de transporte"
-];
-
-function pintarTareas() {
-  const estado = leerGuardado("miRumboTareas", []);
-
-  document.getElementById("tareas").innerHTML = tareas.map((t, i) =>
-    "<label class='respuesta'><input type='checkbox' data-tarea='" +
-    i + "' " + (estado[i] ? "checked" : "") + "> " + t + "</label>"
-  ).join("");
+const tareas=['Investigar carreras de mi interés','Consultar requisitos de admisión','Verificar fechas de prematrícula','Reunir documentos necesarios','Consultar becas y opciones de transporte'];
+let estadoTareas=leer('miRumboTareas',Array(tareas.length).fill(false));
+if(!Array.isArray(estadoTareas)||estadoTareas.length!==tareas.length)estadoTareas=Array(tareas.length).fill(false);
+function pintarTareas(){
+document.getElementById('tareas').innerHTML=tareas.map((t,i)=>'<label class="respuesta"><input type="checkbox" data-tarea="'+i+'" '+(estadoTareas[i]?'checked':'')+'> '+t+'</label>').join('');
 }
-
-function guardarTareas() {
-  const estado = tareas.map((t, i) => {
-    const casilla = document.querySelector('[data-tarea="' + i + '"]');
-    return casilla ? casilla.checked : false;
-  });
-
-  guardar("miRumboTareas", estado);
-}
-
-document.getElementById("tareas").addEventListener("change", function(e) {
-  if (e.target.matches("[data-tarea]")) guardarTareas();
+document.getElementById('tareas').addEventListener('change',function(e){
+if(e.target.matches('[data-tarea]')){estadoTareas[Number(e.target.dataset.tarea)]=e.target.checked;guardar('miRumboTareas',estadoTareas)}
 });
-
-/* Notas del plan */
-const notas = document.getElementById("notas");
-notas.value = leerGuardado("miRumboNotas", "");
-
-notas.addEventListener("input", function() {
-  guardar("miRumboNotas", notas.value);
-  document.getElementById("guardado").textContent =
-    "Notas guardadas en este navegador.";
+document.getElementById('notas').value=leer('miRumboNotas','');
+document.getElementById('notas').addEventListener('input',function(){
+const ok=guardar('miRumboNotas',document.getElementById('notas').value);
+document.getElementById('guardado').textContent=ok?'Tus notas se guardan en este navegador.':'No se pudieron guardar las notas en este navegador.';
 });
-
-/* Inicialización */
 pintarTareas();
 pintarPregunta();
-pintarCarreras();
-pintarUniversidades();
-pintarFavoritas();
 </script>
 </body>
 </html>
